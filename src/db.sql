@@ -1,3 +1,6 @@
+drop database if exists prosjekt2;
+create schema prosjekt2;
+use prosjekt2;
 
 create table Treningsøkt (
 ØktID integer not null,
