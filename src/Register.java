@@ -9,8 +9,8 @@ public class Register extends Connect {
         try {
             statement = conn.createStatement();
             statement.executeUpdate(
-                    "INSERT INTO Treningsøkt(Dato, Tidspunkt, Varighet, Notat) "
-                    + "VALUES ('"+dato+"', '"+tidspunkt+"', "+varighet+", '" + notat + "')");
+                    "INSERT INTO Treningsøkt(Dato, Tidspunkt, Varighet, Notat) " +
+                            "VALUES ('"+dato+"', '"+tidspunkt+"', "+varighet+", '" + notat + "')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
@@ -22,8 +22,8 @@ public class Register extends Connect {
         try {
             statement = conn.createStatement();
             statement.executeUpdate(
-                    "INSERT INTO apparat "
-                    + "VALUES (" + apparatid + ", '" + navn + "', '"  +beskrivelse + "')");
+                    "INSERT INTO apparat " +
+                            "VALUES (" + apparatid + ", '" + navn + "', '"  +beskrivelse + "')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
@@ -34,8 +34,8 @@ public class Register extends Connect {
         try {
             statement = conn.createStatement();
             statement.executeUpdate(
-                    "INSERT INTO øvelse "
-                    + "VALUES ("+ ovelsesid + ", '" +navn+"')");
+                    "INSERT INTO øvelse " +
+                            "VALUES ("+ ovelsesid + ", '" +navn+"')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
