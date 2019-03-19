@@ -1,11 +1,6 @@
-//Må vi skrive package her? 
-package prosjeckt2-db;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
-import prosjekt2-db.ExcerciceOnMachine;
-import prosjekt2-db.ResultLog;
 
 public class Main {
 	
@@ -142,14 +137,14 @@ public class Main {
 			    System.out.println("Skriv navnet på apparatet: ");
 			    String name = scanner.next();
 			    
-			    ExcerciseOnMachine excericeOnMachine = new ExcerciseOnMachine ();
-	    	    excerciseOnMachine.connect();
-	    	    excerciseOnMachine.ExcerciseMachine(name);
+			    MachineExercise me = new MachineExercise ();
+	    	    me.connect();
+	    	    me.MachineExercise(name);
 	    	}	    
 		}
-		
-	    System.out.println("Programmet er nå avsluttet");
+
 		scanner.close();
+	    System.out.println("Program terminated successfully");´
     }
 
 	
