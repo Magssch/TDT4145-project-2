@@ -55,7 +55,7 @@ public class Main {
 	    			String navn = scanner.next();
 	    			System.out.println("Skriv inn beskrivelse");
 	    			String besk = scanner.next();
-	    			r.registrer_aparat(id, navn, besk);
+	    			r.Register(id, navn, besk);
 	    		}
 	    		if (funk == 3) {
 	    			System.out.println("Skriv inn øvelsesid");
