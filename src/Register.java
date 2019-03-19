@@ -35,7 +35,7 @@ public class Register extends Connect {
             statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO Øvelse " +
-                            "VALUES ("+ exerciseIDID + ", '" + name +"')");
+                            "VALUES ("+ exerciseID + ", '" + name +"')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
