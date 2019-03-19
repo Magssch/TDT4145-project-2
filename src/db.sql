@@ -3,7 +3,7 @@ create schema prosjekt2;
 use prosjekt2;
 
 create table Treningsøkt (
-ØktID integer not null,
+ØktID integer not null auto_increment,
 Dato date not null,
 Tidspunkt time not null,
 Varighet float(4, 1) not null,
@@ -13,14 +13,14 @@ constraint VarighetSjekk check (Varighet > 0));
 
 
 create table Apparat (
-ApparatID integer not null,
+ApparatID integer not null auto_increment,
 Navn varchar(30) not null,
 Beskrivelse varchar(100) not null,
 constraint Apparat_PK primary key (ApparatID));
 
 
 create table Øvelse (
-ØvelseID integer not null,
+ØvelseID integer not null auto_increment,
 Navn varchar(30) not null,
 PersonligForm integer,
 PersonligPrestasjon integer,
@@ -30,7 +30,7 @@ constraint gyldigPrestasjon check (PersonligPrestasjon > 0 and PersonligPrestasj
 
 
 create table Apparatøvelse (
-ØvelseID integer not null,
+ØvelseID integer not null auto_increment,
 Kilo integer not null,
 Sett integer not null,
 ApparatID integer not null,
@@ -45,7 +45,7 @@ constraint SettSjekk check (Sett > 0));
 
 
 create table IkkeApparatøvelse (
-ØvelseID integer not null,
+ØvelseID integer not null auto_increment,
 Beskrivelse varchar(100) not null,
 constraint IkkeApparatøvelse_FK foreign key (ØvelseID) references Øvelse(ØvelseID)
 					on update cascade
@@ -64,7 +64,7 @@ constraint ØvelseIØkt_FK2 foreign key (ØvelseID) references Øvelse(ØvelseID
 
 
 create table Øvelsesgruppe (
-GruppeID integer not null,
+GruppeID integer not null auto_increment,
 Navn varchar(30) not null,
 constraint Øvelsesgruppe_PK primary key (GruppeID));
 
