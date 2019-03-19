@@ -1,9 +1,9 @@
 import java.sql.*;
 
-public class ExerciseOnMachine extends Connect {
+public class MachineExercise extends Connect {
 
 
-    public void ExcerciseMachine(String navn) {
+    public void MachineExercise(String name) {
 
         Statement statement = null;
         ResultSet result = null;
