@@ -3,7 +3,7 @@ import java.sql.*;
 public class ExerciseOnMachine extends Connect {
 
 
-    public void ØvelserApparat(String navn) {
+    public void ExcerciseMachine(String navn) {
 
         Statement statement = null;
         ResultSet result = null;
