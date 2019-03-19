@@ -7,7 +7,7 @@ public class Register extends Connect {
 
     public void treningsokt(String dato, String tidspunkt, int varighet, int form, int prestasjon, String notat) {
         try {
-            statement = conn.createStatement();
+            statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO Treningsøkt(Dato, Tidspunkt, Varighet, Notat) " +
                             "VALUES ('"+dato+"', '"+tidspunkt+"', "+varighet+", '" + notat + "')");
@@ -20,7 +20,7 @@ public class Register extends Connect {
 
     public void apparat(int apparatid, String navn, String beskrivelse) {
         try {
-            statement = conn.createStatement();
+            statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO apparat " +
                             "VALUES (" + apparatid + ", '" + navn + "', '"  +beskrivelse + "')");
@@ -32,7 +32,7 @@ public class Register extends Connect {
 
     public void ovelse(int ovelsesid, String navn) {
         try {
-            statement = conn.createStatement();
+            statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO øvelse " +
                             "VALUES ("+ ovelsesid + ", '" +navn+"')");

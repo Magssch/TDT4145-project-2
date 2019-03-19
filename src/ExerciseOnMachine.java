@@ -1,29 +1,28 @@
 import java.sql.*;
 
-public class ØvelserPåApparat extends DBConn{
+public class ExerciseOnMachine extends Connect {
 
 
     public void ØvelserApparat(String navn) {
 
-        Statement stmt = null;
-        ResultSet rs = null;
+        Statement statement = null;
+        ResultSet result = null;
 
         try {
-            stmt = conn.createStatement();
+            statement = connection.createStatement();
 
-            String query = "SELECT øvelse.navn FROM øvelsemedapparat Inner Join apparat ON øvelsemedapparat.apparatid = apparat.apparatid Inner Join øvelse ON øvelse.øvelsesid = øvelsemedapparat.øvelsesid WHERE apparat.navn ="+"'"+navn+"'";
-            if (stmt.execute(query)) {
-                rs = stmt.getResultSet();
+            String query = "SELECT øvelse.navn FROM øvelsemedapparat Inner Join apparat ON øvelsemedapparat.apparatid = apparat.apparatid Inner Join øvelse ON øvelse.øvelsesid = øvelsemedapparat.øvelsesid WHERE apparat.navn =" + "'" + navn + "'";
+            if (statement.execute(query)) {
+                result = statement.getResultSet();
             }
 
-            while (rs.next()) {
-                String string = rs.getString(1);
+            while (result.next()) {
+                String string = result.getString(1);
                 System.out.println(string);
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-        catch(SQLException ex) {
-            System.out.println("SQLException " + ex.getMessage());
-        }
-
     }
+}
 	

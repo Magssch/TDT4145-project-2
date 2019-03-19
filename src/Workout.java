@@ -10,7 +10,7 @@ public class Workout extends Connect {
     public void get(int n){
 
         try {
-            statement = conn.createStatement();
+            statement = connection.createStatement();
             result = statement.executeQuery(
                     "select * from Treningsøkt " +
                             "ORDER BY ØktID DESC LIMIT " + n + ";");
