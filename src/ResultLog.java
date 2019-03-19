@@ -19,7 +19,8 @@ public class ResultLog extends Connector{
 			if (sorterEtter == 1) {
 				insatt = "dato";
 			}
-			else { insatt = "tidspunkt"; 
+			else if (sortEtter == 2){
+                insatt = "tidspunkt"; 
             }
 			String query = "SELECT treningsid, navn, dato, tidspunkt, varighet, form, prestasjon, notat " + 
 					"FROM (øvelse NATURAL JOIN øvelsepåøkt) NATURAL JOIN treningsøkt " + 

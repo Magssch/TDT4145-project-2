@@ -1,9 +1,9 @@
 import java.sql.*;
 
-public class ØvelserPåApparat extends DBConn{
+public class ExcerciseOnMachine extends DBConn{
 
 
-    public void ØvelserApparat(String navn) {
+    public void ExcerciseMachine(String navn) {
 
         Statement stmt = null;
         ResultSet rs = null;
