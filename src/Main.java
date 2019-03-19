@@ -136,16 +136,10 @@ public class Main {
 	    	if (nextFunction == 5) { 
 			    System.out.println("Skriv navnet på apparatet: ");
 			    String name = scanner.next();
-			    
-<<<<<<< HEAD
+
 			    MachineExercise me = new MachineExercise ();
 	    	    me.connect();
 	    	    me.MachineExercise(name);
-=======
-			    ExcerciseMachine excericeMachine = new ExcerciseMachine ();
-	    	    excerciseMachine.connect();
-	    	    excerciseMachine.ExcerciseMachine(name);
->>>>>>> 5cad5a3331f47761c17eeecf80ceeef04ef9e98f
 	    	}	    
 		}
 
