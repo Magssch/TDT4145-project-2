@@ -104,23 +104,23 @@ public class Main {
 			ResultSet rs = null;
 		    	
 	    	if (nextFunction == 4){
-	    		nyGruppe p = new nyGruppe();
-	    		p.connect();
+	    		newGroup group = new newGroup();
+	    		group.connect();
 	    		System.out.println("ønsker du å opprette en ny muskelgruppe, svar y dersom ja og n dersom nei");
-	    		String svar= scanner.next();
-	    		if(svar.equals("y")){
+	    		String answer= scanner.next();
+	    		if(answer.equals("y")){
 	    			System.out.println("Hvilke musklgruppe ønsker du å lage en gruppe for? "); 
-		    		String gruppeNavn= scanner.next();
-		            System.out.println("Hvilke id skal muskelgruppen ha?");
+		    		String groupName = scanner.next();
+		            System.out.println("Hvilke id skal muskelgruppen ha?"); //hadde vært fint om vi listet opp id'er som er opptatt
 		    		int id= scanner.nextInt();
-		    		scanner.nextLine();
-		    		p.insettØvelseGruppe(id, gruppeNavn);
+		    		scanner.nextLine(); //denne lå her i koden fra før, men tror vi må fjerne det. Jeg skjønner ihvertfall ikke hva den gjør -Erling
+		    		group.insettØvelseGruppe(id, gruppeNavn);
 		    		System.out.println("Hvilke øvelser vil du at skal ligge i gruppen, skriv inn id(er)");
-		    		p.getØvelser();
+		    		group.getExcercises();
 		    		System.out.println("Velg en øvelse, og trykk enter. Når du er ferdig kan skriv 0");
 		    		while (true) {
-		    			int nyØvelse = scanner.nextInt();
-		    			if (nyØvelse == 0) {
+		    			int newExcercise = scanner.nextInt();
+		    			if (newExcercise == 0) {
 		    				break;
 		    			}
 		    			else {
@@ -137,15 +137,19 @@ public class Main {
 			    System.out.println("Skriv navnet på apparatet: ");
 			    String name = scanner.next();
 			    
+<<<<<<< HEAD
 			    MachineExercise me = new MachineExercise ();
 	    	    me.connect();
 	    	    me.MachineExercise(name);
+=======
+			    ExcerciseMachine excericeMachine = new ExcerciseMachine ();
+	    	    excerciseMachine.connect();
+	    	    excerciseMachine.ExcerciseMachine(name);
+>>>>>>> 5cad5a3331f47761c17eeecf80ceeef04ef9e98f
 	    	}	    
 		}
 
 		scanner.close();
 	    System.out.println("Program terminated successfully");´
     }
-
-	
 }
