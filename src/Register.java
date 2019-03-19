@@ -5,12 +5,12 @@ public class Register extends Connect {
 
     private Statement statement = null;
 
-    public void treningsokt(String dato, String tidspunkt, int varighet, int form, int prestasjon, String notat) {
+    public void session(String date, String time, int duration, String note) {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO Treningsøkt(Dato, Tidspunkt, Varighet, Notat) " +
-                            "VALUES ('"+dato+"', '"+tidspunkt+"', "+varighet+", '" + notat + "')");
+                            "VALUES ('"+ date +"', '"+ time +"', "+ duration +", '" + note + "')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
@@ -18,24 +18,24 @@ public class Register extends Connect {
     }
 
 
-    public void apparat(int apparatid, String navn, String beskrivelse) {
+    public void machine(int machineID, String name, String description) {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(
-                    "INSERT INTO apparat " +
-                            "VALUES (" + apparatid + ", '" + navn + "', '"  +beskrivelse + "')");
+                    "INSERT INTO Apparat " +
+                            "VALUES (" + machineID + ", '" + name + "', '"  + description + "')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
         }
     }
 
-    public void ovelse(int ovelsesid, String navn) {
+    public void exercise(int exerciseID, String name) {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(
-                    "INSERT INTO øvelse " +
-                            "VALUES ("+ ovelsesid + ", '" +navn+"')");
+                    "INSERT INTO Øvelse " +
+                            "VALUES ("+ exerciseIDID + ", '" + name +"')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
