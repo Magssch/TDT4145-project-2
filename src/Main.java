@@ -69,11 +69,11 @@ public class Main {
 		    }
 		    	
 	    	if (nextFunction == 2) {
-	    		PrintWorkouts workouts = new PrintWorkouts();
+	    		Workout workouts = new Workout();
 	    	    workouts.connect();
 	    		System.out.println("Skriv inn hvor mange økter du har lyst til å se:");
 	    		int n = scanner.nextInt();
-		 		workouts.printWorkouts(n);
+		 		workouts.get(n);
 	    	}
 	    	
 	    	if (nextFunction == 3) {

@@ -2,30 +2,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ResultLog extends Connector{
+public class ResultLog extends Connect {
 	
 	public static String rightPadding(String str, int num) {
 		return String.format("%1$-" + num + "s", str);
 	}
 	
-	public void getResultatLogg(String øvelse, String start, String slutt, int sorterEtter) {
+	public void getResultatLogg(String exercise, String start, String finish, int sortBy) {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
-			stmt = conn.createStatement();
+			stmt = connection.createStatement();
 			//sorter på dato (1) eller starttidspunkter (2)/alle andre tall
 			String insatt = null;
-			if (sorterEtter == 1) {
+			if (sortBy == 1) {
 				insatt = "dato";
 			}
-			else if (sortEtter == 2){
+			else if (sortBy == 2){
                 insatt = "tidspunkt"; 
             }
 			String query = "SELECT treningsid, navn, dato, tidspunkt, varighet, form, prestasjon, notat " + 
 					"FROM (øvelse NATURAL JOIN øvelsepåøkt) NATURAL JOIN treningsøkt " + 
-					"WHERE navn = '" + øvelse + "' AND " + insatt +" BETWEEN '" + start + "' AND '"
-					+ slutt +"';";
+					"WHERE navn = '" + exercise + "' AND " + insatt +" BETWEEN '" + start + "' AND '"
+					+ finish +"';";
 			if (stmt.execute(query)) {
 				rs = stmt.getResultSet();
 			}
