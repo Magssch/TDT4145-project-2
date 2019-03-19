@@ -30,46 +30,46 @@ public class Main {
 	    		r.connect();
 	    		
 	    		System.out.println("Ønsker du å registrere en ny treningsøkt (1), et apparat (2) eller en øvelse(3)?");
-	    		int funk = scanner.nextInt();
-	    		if (funk == 1) {
+	    		int option = scanner.nextInt();
+	    		if (option == 1) {
 	    			System.out.println("Skriv inn dato (format: YYYY-MM-DD)");
-	    			String dato = scanner.next();
+	    			String date = scanner.next();
 	    			System.out.println("Skriv inn starttidspunkt (format: HHMMSS)");
-	    			String tidspunkt = scanner.next();
+	    			String time = scanner.next();
 	    			System.out.println("Skriv inn varighet i antall minutter");
-	    			int varighet = scanner.nextInt();
+	    			int duration = scanner.nextInt();
                     //hva skal egentlig form bety? tenker vi kan endre til dette: "skriv inn formen du følte du var i fra 1-10"
 	    			System.out.println("Skriv inn form (tall fra 1-10");
 	    			int form = scanner.nextInt();
 	    			System.out.println("Skriv inn prestasjon (tall fra 1-10)");
-	    			int prestasjon = scanner.nextInt();
+	    			int performance = scanner.nextInt();
 	    			System.out.println("Skriv inn notat");
-	    			String notat = scanner.next();
-	    			notat += scanner.nextLine();
-	    			r.registrer_treningsokt(dato, tidspunkt, varighet, form, prestasjon, notat);
+	    			String notes = scanner.next();
+	    			notes += scanner.nextLine();
+	    			r.session(date, time, duration, form, performance, notes);
 	    		}
-	    		if (funk == 2) {
+	    		if (option == 2) {
 	    			System.out.println("Skriv inn apparatid");
 	    			int id = scanner.nextInt();
 	    			System.out.println("Skriv inn navn");
-	    			String navn = scanner.next();
+	    			String name = scanner.next();
 	    			System.out.println("Skriv inn beskrivelse");
-	    			String besk = scanner.next();
-	    			r.Register(id, navn, besk);
+	    			String desciption = scanner.next();
+	    			r.machine(id, name, description);
 	    		}
-	    		if (funk == 3) {
+	    		if (option == 3) {
 	    			System.out.println("Skriv inn øvelsesid");
 	    			int id = scanner.nextInt();
 	    			System.out.println("Skriv inn navn");
-	    			String navn = scanner.next();
-	    			r.registrer_ovelse(id, navn);
+	    			String name = scanner.next();
+	    			r.excercise(id, name);
 	    			
 	    		}
 		    		
 		    }
 		    	
 	    	if (nextFunction == 2) {
-	    		printWorkouts workouts = new printWorkouts();
+	    		PrintWorkouts workouts = new PrintWorkouts();
 	    	    workouts.connect();
 	    		System.out.println("Skriv inn hvor mange økter du har lyst til å se:");
 	    		int n = scanner.nextInt();
@@ -79,7 +79,7 @@ public class Main {
 	    	if (nextFunction == 3) {
 	    		System.out.println("Hvilken øvelse ønsker du å se resultatlogg for? ");
 	    		String excercise = scanner.next();
-	    		System.out.println("Ønsker du å finne tidsintervall basert på dato (velg 1) eller (start)tidspunk i løpet av en dag (velg 2)?");
+	    		System.out.println("Ønsker du å finne tidsintervall basert på dato (velg 1) eller (start)tidspunkt i løpet av en dag (velg 2)?");
 	    		int interval = scanner.nextInt();
 	    		String start = null;
 	    		String finished = null;
@@ -114,23 +114,23 @@ public class Main {
 		            System.out.println("Hvilke id skal muskelgruppen ha?"); //hadde vært fint om vi listet opp id'er som er opptatt
 		    		int id= scanner.nextInt();
 		    		scanner.nextLine(); //denne lå her i koden fra før, men tror vi må fjerne det. Jeg skjønner ihvertfall ikke hva den gjør -Erling
-		    		group.insettØvelseGruppe(id, gruppeNavn);
+		    		group.insettØvelseGruppe(id, groupName);
 		    		System.out.println("Hvilke øvelser vil du at skal ligge i gruppen, skriv inn id(er)");
 		    		group.getExcercises();
-		    		System.out.println("Velg en øvelse, og trykk enter. Når du er ferdig kan skriv 0");
+		    		System.out.println("Velg en øvelse, og trykk enter. Når du er ferdig skriv 0");
 		    		while (true) {
 		    			int newExcercise = scanner.nextInt();
 		    			if (newExcercise == 0) {
 		    				break;
 		    			}
 		    			else {
-		    				p.insettØvelserIGruppen(nyØvelse, id);
+		    				group.InsertExerciseInGroup(newExcercise, id);
 		    			}
 		    		}
 	    		}
 	    		System.out.println("Hvilke Gruppeid ønsker du å se øvelser fra?");
-	    		int gruppeId2= scanner.nextInt();
-	    		p.ØvelseIgruppe(gruppeId2);
+	    		int groupID2= scanner.nextInt();
+	    		p.ExcerciseInGroup(groupID2);
 	    	}
 	    	
 	    	if (nextFunction == 5) { 

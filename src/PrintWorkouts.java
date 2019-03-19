@@ -2,9 +2,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class showWorkout extends DBConn{
+public class PrintWorkout extends Connector{
 		 
-	public void showWorkOuts(int n){
+	public void printWorkout(int n){
 		 	
 		Statement query = null;
 		ResultSet result = null;
