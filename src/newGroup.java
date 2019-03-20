@@ -35,10 +35,10 @@ public class newGroup extends Connect {
 }      
 	            
 	
-	public void InsertExcerciseGroup(int groupID, String muscleGroup) {
+	public void InsertExcerciseGroup(Integer id, String muscleGroup) {
 		try {
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("INSERT INTO øvelsesGruppe VALUES ("+groupID+",\'"+muscleGroup+"\')");
+			stmt.executeUpdate("INSERT INTO øvelsesGruppe VALUES ("+muscleGroup+"\')");
 			System.out.println("gruppe ble lagret");
 		}
 		catch(SQLException ex) {
@@ -58,7 +58,7 @@ public class newGroup extends Connect {
 		}
 	}
 	
-	public void GetExcercises() {
+	public void GetExercises() {
 		try {
 			stmt = connection.createStatement();
 			String query = "SELECT * FROM øvelse;";

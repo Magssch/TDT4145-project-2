@@ -39,14 +39,14 @@ public class Main {
 	    			System.out.println("Skriv inn varighet i antall minutter");
 	    			int duration = scanner.nextInt();
                     //hva skal egentlig form bety? tenker vi kan endre til dette: "skriv inn formen du følte du var i fra 1-10"
-	    			System.out.println("Skriv inn form (tall fra 1-10");
-	    			int form = scanner.nextInt();
-	    			System.out.println("Skriv inn prestasjon (tall fra 1-10)");
-	    			int performance = scanner.nextInt();
+	    			//System.out.println("Skriv inn form (tall fra 1-10");
+	    			//int form = scanner.nextInt();
+	    			//System.out.println("Skriv inn prestasjon (tall fra 1-10)");
+	    			//int performance = scanner.nextInt();
 	    			System.out.println("Skriv inn notat");
 	    			String notes = scanner.next();
 	    			notes += scanner.nextLine();
-	    			r.session(date, time, duration, form, performance, notes);
+	    			r.session(date, time, duration, notes);
 	    		}
 	    		if (option == 2) {
 	    			System.out.println("Skriv inn apparatid");
@@ -54,7 +54,7 @@ public class Main {
 	    			System.out.println("Skriv inn navn");
 	    			String name = scanner.next();
 	    			System.out.println("Skriv inn beskrivelse");
-	    			String desciption = scanner.next();
+	    			String description = scanner.next();
 	    			r.machine(id, name, description);
 	    		}
 	    		if (option == 3) {
@@ -62,7 +62,7 @@ public class Main {
 	    			int id = scanner.nextInt();
 	    			System.out.println("Skriv inn navn");
 	    			String name = scanner.next();
-	    			r.excercise(id, name);
+	    			r.exercise(id, name);
 	    			
 	    		}
 		    		
@@ -78,7 +78,7 @@ public class Main {
 	    	
 	    	if (nextFunction == 3) {
 	    		System.out.println("Hvilken øvelse ønsker du å se resultatlogg for? ");
-	    		String excercise = scanner.next();
+	    		String exercise = scanner.next();
 	    		System.out.println("Ønsker du å finne tidsintervall basert på dato (velg 1) eller (start)tidspunkt i løpet av en dag (velg 2)?");
 	    		int interval = scanner.nextInt();
 	    		String start = null;
@@ -89,7 +89,7 @@ public class Main {
 	    			System.out.println("Velg sluttdato på format YYYY-MM-DD");
 	    			finished = scanner.next();
 	    		}
-	    		if (intervall == 2) {
+	    		if (interval == 2) {
 	    			System.out.println("Velg startid på format HHMMSS");
 	    			start = scanner.next();
 	    			System.out.println("Velg sluttdato på format HHMMSS");
@@ -97,7 +97,7 @@ public class Main {
 	    		}
 	    		ResultLog result = new ResultLog();
 	    		result.connect();
-	    		result.getResultatLogg(øvelse, start, finished, interval);
+	    		result.getResultatLogg(exercise, start, finished, interval);
 	    	}
 		    	
 	    	Statement stmt = null;
@@ -114,23 +114,23 @@ public class Main {
 		            System.out.println("Hvilke id skal muskelgruppen ha?"); //hadde vært fint om vi listet opp id'er som er opptatt
 		    		int id= scanner.nextInt();
 		    		scanner.nextLine(); //denne lå her i koden fra før, men tror vi må fjerne det. Jeg skjønner ihvertfall ikke hva den gjør -Erling
-		    		group.insettØvelseGruppe(id, groupName);
+		    		group.InsertExcerciseGroup(id, groupName);
 		    		System.out.println("Hvilke øvelser vil du at skal ligge i gruppen, skriv inn id(er)");
-		    		group.getExcercises();
-		    		System.out.println("Velg en øvelse, og trykk enter. Når du er ferdig skriv 0");
+		    		group.GetExercises();
+		    		System.out.println("Skriv inn id til valgt øvelse, og trykk enter. Når du er ferdig skriv 0");
 		    		while (true) {
 		    			int newExcercise = scanner.nextInt();
 		    			if (newExcercise == 0) {
 		    				break;
 		    			}
 		    			else {
-		    				group.InsertExerciseInGroup(newExcercise, id);
+		    				group.InsertExcerciseInGroup(newExcercise, id);
 		    			}
 		    		}
 	    		}
 	    		System.out.println("Hvilke Gruppeid ønsker du å se øvelser fra?");
 	    		int groupID2= scanner.nextInt();
-	    		p.ExcerciseInGroup(groupID2);
+	    		group.ExcerciseInGroup(groupID2);
 	    	}
 	    	
 	    	if (nextFunction == 5) { 
@@ -144,6 +144,6 @@ public class Main {
 		}
 
 		scanner.close();
-	    System.out.println("Program terminated successfully");´
+	    System.out.println("Program terminated successfully");
     }
 }

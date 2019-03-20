@@ -9,10 +9,11 @@ public class Connect {
 
     public void connect() {
         try {
-            Properties p = new Properties();
-            p.put("user", "root");
-            p.put("password", "root");
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/prosjekt2?autoReconnect=true&useSSL=false", p);
+            //Properties p = new Properties();
+            //p.put("username", "root");
+            //p.put("password", "");
+            //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/prosjekt", p);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
         } catch (Exception e) {
             throw new RuntimeException("Unable to connect to database", e);
         }
@@ -25,7 +26,5 @@ public class Connect {
             System.out.println("Unable to disconnect from database: " + e.toString());
         }
     }
-
-
 }
 
