@@ -4,48 +4,47 @@ import java.sql.Statement;
 
 public class ResultLog extends Connect {
 	
-	public static String rightPadding(String str, int num) {
-		return String.format("%1$-" + num + "s", str);
+	public static String rightPadding(String s, int n) {
+		return String.format("%1$-" + n + "s", s);
 	}
 	
-	public void getResultatLogg(String exercise, String start, String finish, int sortBy) {
-		Statement stmt = null;
-		ResultSet rs = null;
+	public void get(String exercise, String start, String finish, int sortBy) {
+		Statement statement = null;
+		ResultSet result = null;
 		
 		try {
-			stmt = connection.createStatement();
-			//sorter på dato (1) eller starttidspunkter (2)/alle andre tall
-			String insatt = null;
+			statement = connection.createStatement();
+			String sorting = null;
+
 			if (sortBy == 1) {
-				insatt = "dato";
+				sorting = "Dato";
 			}
 			else if (sortBy == 2){
-                insatt = "tidspunkt"; 
+                sorting = "Tidspunkt";
             }
-			String query = "SELECT treningsid, navn, dato, tidspunkt, varighet, form, prestasjon, notat " + 
-					"FROM (øvelse NATURAL JOIN øvelsepåøkt) NATURAL JOIN treningsøkt " + 
-					"WHERE navn = '" + exercise + "' AND " + insatt +" BETWEEN '" + start + "' AND '"
+			String query = "SELECT ØktID, Navn, Dato, Tidspunkt, Varighet, Notat " +
+					"FROM (Øvelse NATURAL JOIN ØvelseIØkt) NATURAL JOIN Treningsøkt " +
+					"WHERE Navn = '" + exercise + "' AND " + sorting +" BETWEEN '" + start + "' AND '"
 					+ finish +"';";
-			if (stmt.execute(query)) {
-				rs = stmt.getResultSet();
+			if (statement.execute(query)) {
+				result = statement.getResultSet();
 			}
-			String rad = rightPadding("Treningsid", 15) + rightPadding("øvelse", 15) + rightPadding("dato", 15) +
-					rightPadding("tidspunkt", 15) + rightPadding("varighet", 15) + 
-					rightPadding("form", 15) + rightPadding("prestasjon", 15) + rightPadding("notat", 15);
+			String row = rightPadding("Økt ID: ", 15) + rightPadding("Øvelse: ", 15) + rightPadding("Dato: ", 15) +
+					rightPadding("Tidspunkt: ", 15) + rightPadding("Varighet: ", 15) + rightPadding("Notat: ", 15);
 			
-			while (rs.next()) {
-				String kolonne = null;
-				rad += "\n";
+			while (result.next()) {
+				String col = null;
+				row += "\n";
 				for (int i = 1; i < 9; i++) {
-					kolonne = rs.getString(i);
-					rad += rightPadding(kolonne, 15);
+					col = result.getString(i);
+					row += rightPadding(col, 15);
 				}	
 			}
 			
-			System.out.println(rad);
+			System.out.println(row);
 		}
-		catch(SQLException ex) {
-			System.out.println("SQLException " + ex.getMessage());
+		catch(SQLException e) {
+			System.out.println("SQLException " + e.getMessage());
 		}
 	}
 	

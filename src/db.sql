@@ -22,11 +22,7 @@ constraint Apparat_PK primary key (ApparatID));
 create table Øvelse (
 ØvelseID integer not null auto_increment,
 Navn varchar(30) not null,
-PersonligForm integer,
-PersonligPrestasjon integer,
-constraint Øvelse_PK primary key (ØvelseID),
-constraint gyldigForm check (PersonligForm > 0 and PersonligForm <= 10),
-constraint gyldigPrestasjon check (PersonligPrestasjon > 0 and PersonligPrestasjon <= 10));
+constraint Øvelse_PK primary key (ØvelseID));
 
 
 create table Apparatøvelse (

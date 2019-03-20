@@ -17,7 +17,8 @@ public class newGroup extends Connect {
 	try {
 		stmt = connection.createStatement();
 		
-		String query = "SELECT groupID,navn FROM øvelse INNER JOIN øvelseigruppe ON (øvelse.excerciseID = øvelseigruppe.excerciseID) WHERE groupID="+id+";";
+		String query = "SELECT GruppeID , Navn FROM Øvelse INNER JOIN " +
+				"ØvelseIGruppe ON (Øvelse.ØvelseID = ØvelseIGruppe.ØvelseID) WHERE GruppeID=" + id + ";";
 		if (stmt.execute(query)) {
 			rs = stmt.getResultSet();
 		}
@@ -25,11 +26,11 @@ public class newGroup extends Connect {
 		while (rs.next()) {
 			String string = rs.getString(1);
 			String string2 = rs.getString(2);
-			System.out.println(string+ " "+string2);
+			System.out.println(string+ " "+ string2);
 		}
 	}
-	catch(SQLException ex) {
-		System.out.println("SQLException " + ex.getMessage());
+	catch(SQLException e) {
+		System.out.println("SQLException " + e.getMessage());
 	}
 	
 }      
@@ -38,35 +39,35 @@ public class newGroup extends Connect {
 	public void InsertExcerciseGroup(Integer id, String muscleGroup) {
 		try {
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("INSERT INTO øvelsesGruppe VALUES ("+muscleGroup+"\')");
+			stmt.executeUpdate("INSERT INTO Øvelsesgruppe VALUES ('" + muscleGroup + "')");
 			System.out.println("gruppe ble lagret");
 		}
-		catch(SQLException ex) {
-			System.out.println("SQLException " + ex.getMessage());
+		catch(SQLException e) {
+			System.out.println("SQLException " + e.getMessage());
 		}
 	}
 	
 	public void InsertExcerciseInGroup(int excerciseID, int groupID) {
 		try {
 			stmt = connection.createStatement();
-			String query = "INSERT INTO øvelseigruppe VALUES(" + groupID + ", "+ excerciseID +");";
+			String query = "INSERT INTO ØvelseIGruppe VALUES(" + groupID + ", "+ excerciseID +");";
 			stmt = connection.createStatement();
 			stmt.executeUpdate(query);
 		}
-		catch(SQLException ex) {
-			System.out.println("SQLException " + ex.getMessage());
+		catch(SQLException e) {
+			System.out.println("SQLException " + e.getMessage());
 		}
 	}
 	
 	public void GetExercises() {
 		try {
 			stmt = connection.createStatement();
-			String query = "SELECT * FROM øvelse;";
+			String query = "SELECT * FROM Øvelse;";
 			if (stmt.execute(query)) {
 				rs = stmt.getResultSet();
 			}
 			
-			String row = rightPadding("excerciseID", 15) + rightPadding("Navn på øvelse", 15);
+			String row = rightPadding("Excercise ID: ", 15) + rightPadding("Navn på øvelse: ", 15);
 			while (rs.next()) {
 				String column = null;
 				row += "\n";
@@ -77,8 +78,8 @@ public class newGroup extends Connect {
 			}
 			System.out.println(row);
 		}
-		catch(SQLException ex) {
-			System.out.println("SQLException " + ex.getMessage());
+		catch(SQLException e) {
+			System.out.println("SQLException " + e.getMessage());
 		}
 		
 	}

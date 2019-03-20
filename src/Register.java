@@ -18,24 +18,24 @@ public class Register extends Connect {
     }
 
 
-    public void machine(int machineID, String name, String description) {
+    public void machine(String name, String description) {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO Apparat " +
-                            "VALUES (" + machineID + ", '" + name + "', '"  + description + "')");
+                            "VALUES ('" + name + "', '"  + description + "')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
         }
     }
 
-    public void exercise(int exerciseID, String name) {
+    public void exercise(String name) {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(
                     "INSERT INTO Øvelse " +
-                            "VALUES ("+ exerciseID + ", '" + name +"')");
+                            "VALUES ('" + name +"')");
         }
         catch(SQLException e) {
             System.out.println("SQLException " + e.getMessage());
