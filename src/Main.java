@@ -139,7 +139,7 @@ public class Main {
 
 			    MachineExercise me = new MachineExercise ();
 	    	    me.connect();
-	    	    me.MachineExercise(name);
+	    	    me.get(name);
 	    	}	    
 		}
 

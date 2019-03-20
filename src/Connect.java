@@ -9,10 +9,6 @@ public class Connect {
 
     public void connect() {
         try {
-            //Properties p = new Properties();
-            //p.put("username", "root");
-            //p.put("password", "");
-            //connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/prosjekt", p);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
         } catch (Exception e) {
             throw new RuntimeException("Unable to connect to database", e);
