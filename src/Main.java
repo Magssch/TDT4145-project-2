@@ -15,12 +15,12 @@ public class Main {
 	    			+ "1) \t Registrere nye apparater, øvelser og treningsøkter \n"
 	    			+ "2) \t Her finner du informasjon om de n siste treningsøktene \n"
 	    			+ "3) \t Her kan du for hver enkelt øvelse se en resultatlogg i et gitt tidsintervall \n"
-	    			+ "4) \t Her kan du lage nye øvelsesgrupper og hvilke øvelser som allerede er i en gruppe \n"
+	    			+ "4) \t Her kan du lage nye øvelsesgrupper og legg øvelser som allerede er i en gruppe \n"
 	    			+ "5) \t Her kan du finne ut hvilke øvelser du kan gjøre på et apparat \n"
 	    			+ "0) \t Skriv 0 om du ønsker å avslutte programmet");
 	    			
 	    	int nextFunction = scanner.nextInt();
-	    	
+
 	    	if (nextFunction == 0) {
 	    		break;
 	    	}
@@ -32,37 +32,44 @@ public class Main {
 	    		System.out.println("Ønsker du å registrere en ny treningsøkt (1), et apparat (2) eller en øvelse(3)?");
 	    		int option = scanner.nextInt();
 	    		if (option == 1) {
+					System.out.println("Skriv inn id");
+					int id = scanner.nextInt();
 	    			System.out.println("Skriv inn dato (format: YYYY-MM-DD)");
 	    			String date = scanner.next();
 	    			System.out.println("Skriv inn starttidspunkt (format: HHMMSS)");
 	    			String time = scanner.next();
 	    			System.out.println("Skriv inn varighet i antall minutter");
 	    			int duration = scanner.nextInt();
-                    //hva skal egentlig form bety? tenker vi kan endre til dette: "skriv inn formen du følte du var i fra 1-10"
-	    			//System.out.println("Skriv inn form (tall fra 1-10");
-	    			//int form = scanner.nextInt();
-	    			//System.out.println("Skriv inn prestasjon (tall fra 1-10)");
-	    			//int performance = scanner.nextInt();
 	    			System.out.println("Skriv inn notat");
 	    			String notes = scanner.next();
 	    			notes += scanner.nextLine();
-	    			r.session(date, time, duration, notes);
+	    			r.session(id, date, time, duration, notes);
+					while(true){
+						System.out.println("Skriv inn øvelseID til øvelser som ble gjennomført denne økten. Skriv 0 dersom du er ferdig ");
+						int id2 = scanner.nextInt();
+						if (id2 == 0){
+							break;
+						}
+						r.sessionInExercise(id2,id);
+
+					}
+
 	    		}
 	    		if (option == 2) {
-	    			System.out.println("Skriv inn apparatid");
-	    			int id = scanner.nextInt();
+
 	    			System.out.println("Skriv inn navn");
 	    			String name = scanner.next();
 	    			System.out.println("Skriv inn beskrivelse");
 	    			String description = scanner.next();
-	    			r.machine(id, name, description);
+	    			r.machine(name, description);
+
+
 	    		}
 	    		if (option == 3) {
-	    			System.out.println("Skriv inn øvelsesid");
-	    			int id = scanner.nextInt();
 	    			System.out.println("Skriv inn navn");
 	    			String name = scanner.next();
-	    			r.exercise(id, name);
+	    			r.exercise( name);
+
 	    			
 	    		}
 		    		
@@ -97,7 +104,7 @@ public class Main {
 	    		}
 	    		ResultLog result = new ResultLog();
 	    		result.connect();
-	    		result.getResultatLogg(exercise, start, finished, interval);
+	    		result.get(exercise, start, finished, interval);
 	    	}
 		    	
 	    	Statement stmt = null;
@@ -106,14 +113,14 @@ public class Main {
 	    	if (nextFunction == 4){
 	    		newGroup group = new newGroup();
 	    		group.connect();
-	    		System.out.println("ønsker du å opprette en ny muskelgruppe, svar y dersom ja og n dersom nei");
+	    		System.out.println("ønsker du å opprette en ny øvelsesgruppe, svar y dersom ja og n dersom nei");
 	    		String answer= scanner.next();
 	    		if(answer.equals("y")){
-	    			System.out.println("Hvilke musklgruppe ønsker du å lage en gruppe for? "); 
+	    			System.out.println("Hva heter gruppen du ønsker å lage? ");
 		    		String groupName = scanner.next();
-		            System.out.println("Hvilke id skal muskelgruppen ha?"); //hadde vært fint om vi listet opp id'er som er opptatt
+		            System.out.println("Hvilke id skal gruppen ha?"); //hadde vært fint om vi listet opp id'er som er opptatt
 		    		int id= scanner.nextInt();
-		    		scanner.nextLine(); //denne lå her i koden fra før, men tror vi må fjerne det. Jeg skjønner ihvertfall ikke hva den gjør -Erling
+		    		scanner.nextLine();
 		    		group.InsertExcerciseGroup(id, groupName);
 		    		System.out.println("Hvilke øvelser vil du at skal ligge i gruppen, skriv inn id(er)");
 		    		group.GetExercises();

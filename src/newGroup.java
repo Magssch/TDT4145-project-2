@@ -17,7 +17,7 @@ public class newGroup extends Connect {
 	try {
 		stmt = connection.createStatement();
 		
-		String query = "SELECT GruppeID , Navn FROM Øvelse INNER JOIN " +
+		String query = "SELECT GruppeID , Øvelse.Navn FROM Øvelse INNER JOIN " +
 				"ØvelseIGruppe ON (Øvelse.ØvelseID = ØvelseIGruppe.ØvelseID) WHERE GruppeID=" + id + ";";
 		if (stmt.execute(query)) {
 			rs = stmt.getResultSet();
@@ -39,8 +39,9 @@ public class newGroup extends Connect {
 	public void InsertExcerciseGroup(Integer id, String muscleGroup) {
 		try {
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("INSERT INTO Øvelsesgruppe VALUES ('" + muscleGroup + "')");
-			System.out.println("gruppe ble lagret");
+			stmt.executeUpdate("INSERT INTO Øvelsesgruppe(GruppeID,Navn)" +
+					" VALUES ('" + id + "','" + muscleGroup + "')");
+			System.out.println("gruppen ble lagret");
 		}
 		catch(SQLException e) {
 			System.out.println("SQLException " + e.getMessage());
@@ -50,7 +51,8 @@ public class newGroup extends Connect {
 	public void InsertExcerciseInGroup(int excerciseID, int groupID) {
 		try {
 			stmt = connection.createStatement();
-			String query = "INSERT INTO ØvelseIGruppe VALUES(" + groupID + ", "+ excerciseID +");";
+			String query = "INSERT INTO ØvelseIGruppe(ØvelseID, GruppeID)" +
+					" VALUES(" + excerciseID  + ", "+ groupID +");";
 			stmt = connection.createStatement();
 			stmt.executeUpdate(query);
 		}

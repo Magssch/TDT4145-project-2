@@ -35,7 +35,7 @@ public class ResultLog extends Connect {
 			while (result.next()) {
 				String col = null;
 				row += "\n";
-				for (int i = 1; i < 9; i++) {
+				for (int i = 1; i < 6; i++) {
 					col = result.getString(i);
 					row += rightPadding(col, 15);
 				}	

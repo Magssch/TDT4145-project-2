@@ -12,7 +12,7 @@ public class MachineExercise extends Connect {
             statement = connection.createStatement();
 
             String query = "SELECT Øvelse.Navn FROM Apparatøvelse " +
-                    "Inner Join Apparat ON Apparatøvelse.ApparatID = Apparat.ApparaitID " +
+                    "Inner Join Apparat ON Apparatøvelse.ApparatID = Apparat.ApparatID " +
                     "Inner Join Øvelse ON Øvelse.ØvelsesID = Apparatøvelse.ØvelsesID " +
                     "WHERE Apparat.Navn = '" + name + "'";
 

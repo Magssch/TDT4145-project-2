@@ -9,7 +9,13 @@ public class Connect {
 
     public void connect() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
+
+            Properties p = new Properties();
+            p.put("user", "root");
+            p.put("password", "");
+
+
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/prosjekt2", p);
         } catch (Exception e) {
             throw new RuntimeException("Unable to connect to database", e);
         }
